@@ -1,4 +1,4 @@
-package edu.by.ishangulyev.util;
+package edu.by.ishangulyev.shape.util;
 
 public class IdGenerator
 {
