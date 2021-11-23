@@ -21,7 +21,7 @@ public class CubeFileReader
 
     public List<String> read() throws CubeException
     {
-        if(!CubeLineValidator.isCorrect(path.toString()))
+        if(CubeLineValidator.isEmpty(path.toString()))
         {
             throw new CubeException("Incorrect path or unreadable file");
         }

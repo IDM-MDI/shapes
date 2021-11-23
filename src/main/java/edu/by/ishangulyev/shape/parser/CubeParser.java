@@ -14,20 +14,20 @@ public class CubeParser
 
     public List<Double> parse(String enterLine) throws CubeException
     {
-        if(!CubeLineValidator.isCorrect(enterLine))
+        if(CubeLineValidator.isEmpty(enterLine))
         {
             throw new CubeException("Line is empty");
         }
         List<Double> points;
         try
         {
-            points = Arrays.stream(enterLine.split(REG_EX_DELIMITER)).map(Double::parseDouble).collect(Collectors.toList());
+            points = Arrays.stream(enterLine.split(REG_EX_DELIMITER)).filter(CubeLineValidator::isLineValid).map(Double::parseDouble).collect(Collectors.toList());
         } catch (Exception e)
         {
             e.printStackTrace();
             throw new CubeException("");                                                                              //TODO: Add func
         }
-        return points;
+        return List.copyOf(points);
     }
 
 }

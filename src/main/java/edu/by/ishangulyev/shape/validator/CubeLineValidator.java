@@ -9,9 +9,9 @@ public class CubeLineValidator
     {
         return line.matches(REG_EX_FOR_LINE);
     }
-    public static boolean isCorrect(String someString)
+    public static boolean isEmpty(String someString)
     {
-        return !(someString == null || someString.isBlank());
+        return someString == null || someString.isBlank();
     }
 
 }

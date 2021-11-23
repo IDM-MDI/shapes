@@ -4,6 +4,7 @@ public class Cube
 {
     private int id;
     private String name;
+    private float volume;
     private Point[] points;
 
     public Cube(int id,String name,Point[] points)
