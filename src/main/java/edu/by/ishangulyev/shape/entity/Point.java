@@ -2,8 +2,9 @@ package edu.by.ishangulyev.shape.entity;
 
 public class Point
 {
-    private float x,y,z;
+    private float x = 0,y = 0,z = 0;
 
+    public Point(){}
     @Override
     public String toString()
     {

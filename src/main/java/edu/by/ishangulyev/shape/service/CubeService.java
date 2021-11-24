@@ -16,7 +16,7 @@ public class CubeService
         }
         return length;
     }
-    private float lengthCalculate(Point[] points) throws CubeException
+    public static float lengthCalculate(Point[] points) throws CubeException
     {
         float   x = points[0].getX(),
                 y = points[0].getY(),
