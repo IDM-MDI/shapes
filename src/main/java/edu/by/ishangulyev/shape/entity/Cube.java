@@ -1,27 +1,31 @@
 package edu.by.ishangulyev.shape.entity;
 
+import edu.by.ishangulyev.shape.util.IdGenerator;
+
+import java.util.Arrays;
+
 public class Cube
 {
-    private int id;
-    private String name;
-    private float volume;
+    private long id;
+    private float length;
     private Point[] points;
-
-    public Cube(int id,String name,Point[] points)
     {
-        this.id = id;
-        this.name = name;
-        this.points = new Point[8];
-        System.arraycopy(points,0,this.points,0,points.length);
+        this.id = IdGenerator.getId();
     }
+    public Cube()
+    {
 
+    }
+    public Cube(Point[] points) {
+        this.points = points;
+    }
 
     @Override
     public int hashCode()
     {
         int result = 17;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + id;
+        result = 31 * result + Arrays.hashCode(points);
+        result = 31 * result + (int)id;
         return result;
     }
     @Override
@@ -33,22 +37,24 @@ public class Cube
             return false;
         }
         Cube cube = (Cube) obj;
-        return cube.name.equals(name) && cube.id == id;
+        return cube.id == id
+                && cube.points == points;
     }
 
     @Override
     public String toString()
-    {
-        return "{ " + this.name + ": " + id + " }";
+    {final StringBuilder stringBuilder = new StringBuilder()
+            .append("Cube{ Points( ")
+            .append(points)
+            .append(" length = ")
+            .append(length)
+            .append(" }");
+        return stringBuilder.toString();
     }
 
-    public int getId()
+    public long getId()
     {
         return this.id;
     }
 
-    public String getName()
-    {
-        return this.name;
-    }
 }

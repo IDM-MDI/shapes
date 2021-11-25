@@ -5,6 +5,20 @@ public class Point
     private float x = 0,y = 0,z = 0;
 
     public Point(){}
+    public Point(float x,float y,float z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Point(Point point)
+    {
+        this.x = point.getX();
+        this.y = point.getY();
+        this.z = point.getZ();
+    }
+
     @Override
     public String toString()
     {
@@ -53,5 +67,11 @@ public class Point
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+    public void setCoordinate(Point point)
+    {
+        this.x = point.getX();
+        this.y = point.getY();
+        this.z = point.getZ();
     }
 }

@@ -6,8 +6,8 @@ public final class CubeCreator implements ShapeCreator
 {
 
     @Override
-    public Cube createCube(int id, String name, Point[] points)
+    public Cube createCube(Point[] points)
     {
-        return new Cube(id,name,points);
+        return new Cube(points);
     }
 }

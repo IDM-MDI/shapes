@@ -2,7 +2,7 @@ package edu.by.ishangulyev.shape.validator;
 
 public class CubeLineValidator
 {
-    private static final String REG_EX_FOR_LINE = "([-]?\\d+\\.\\d+[\\s]?){8}";
+    private static final String REG_EX_FOR_LINE = "([-]?\\d+\\.\\d+[\\s]?){24}";
     private CubeLineValidator(){};
 
     public static boolean isLineValid(String line)
