@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class CubeParser
 {
     private static final String REG_EX_DELIMITER = "\\s+";
-    private static final int POINT_NUMBER = 8;
+    //private static final int POINT_NUMBER = 8;
 
     public List<Float> parse(String enterLine) throws CubeException
     {
@@ -24,8 +24,7 @@ public class CubeParser
             points = Arrays.stream(enterLine.split(REG_EX_DELIMITER)).map(Float::parseFloat).collect(Collectors.toList());
         } catch (Exception e)
         {
-            e.printStackTrace();
-            throw new CubeException("");                                                                              //TODO: Add func
+            throw new CubeException("");                    //TODO: Make Error Line                                                                              //TODO: Add func
         }
         return List.copyOf(points);
     }

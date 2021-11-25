@@ -12,10 +12,7 @@ public class Cube
     {
         this.id = IdGenerator.getId();
     }
-    public Cube()
-    {
-
-    }
+    public Cube() {}
     public Cube(Point[] points) {
         this.points = points;
     }
