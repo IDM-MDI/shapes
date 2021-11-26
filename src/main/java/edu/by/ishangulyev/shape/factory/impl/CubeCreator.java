@@ -13,10 +13,10 @@ public final class CubeCreator implements ShapeCreator
     @Override
     public Cube createCube(Point[] points) throws CubeException
     {
-        if(points.length < POINTS_NUMBER)
+        if(points.length != POINTS_NUMBER)
         {
             logger.log(Level.ERROR,"Invalid points count: {}",points.length);
-            throw new CubeException("Error. Points count less than 8");
+            throw new CubeException("Error. Points count not equal 8");
         }
         logger.log(Level.INFO,"Factory method create new cube");
         return new Cube(points);

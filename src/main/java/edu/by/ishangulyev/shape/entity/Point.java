@@ -33,9 +33,9 @@ public class Point
             return false;
         }
         Point point = (Point) obj;
-        return point.x == x
-                && point.y == y
-                && point.z == z;
+        return Float.compare(point.x,x) == 0
+                && Float.compare(point.y,y) == 0
+                && Float.compare(point.z,z) == 0;
 
     }
 

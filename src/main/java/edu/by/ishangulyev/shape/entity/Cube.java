@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Cube
 {
@@ -34,7 +35,6 @@ public class Cube
     {
         int result = 17;
         result += 31 * result + Arrays.hashCode(points);
-        result += 31 * result + (int)id;
         return result;
     }
     @Override
@@ -46,17 +46,19 @@ public class Cube
             return false;
         }
         Cube cube = (Cube) obj;
-        return cube.id == id
-                && cube.points == points;
+        return Arrays.equals(points, cube.points);
     }
+
 
     @Override
     public String toString()
-    {final StringBuilder stringBuilder = new StringBuilder()
-            .append("Cube{ Points( ")
-            .append(points)
+    {
+        final StringBuilder stringBuilder = new StringBuilder()
+            .append("Cube{ ")
+            .append(Arrays.toString(points))
             .append(" }");
         return stringBuilder.toString();
+
     }
 
     public long getId()
