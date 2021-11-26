@@ -9,4 +9,21 @@ public class CubeValidator
     {
         return points.length == 8;
     }
+    public boolean isParamValid(Point[] points)
+    {
+        boolean result = true;
+        if(!isCountCorrect(points))
+        {
+            result = false;
+        }
+        for (int i = 0; i < points.length; i++)
+        {
+            if(points[i] == null)
+            {
+                result = false;
+            }
+        }
+        return result;
+    }
+
 }

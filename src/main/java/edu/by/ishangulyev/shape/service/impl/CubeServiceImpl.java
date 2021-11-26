@@ -5,9 +5,13 @@ import edu.by.ishangulyev.shape.entity.Point;
 import edu.by.ishangulyev.shape.exception.CubeException;
 import edu.by.ishangulyev.shape.service.CubeService;
 import edu.by.ishangulyev.shape.validator.CubeValidator;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CubeServiceImpl implements CubeService
 {
+    private static final Logger logger = LogManager.getLogger();
     private float length;
     CubeValidator cubeValidator;
     PointServiceImpl pointService;
@@ -32,6 +36,7 @@ public class CubeServiceImpl implements CubeService
     {
         if(!cubeValidator.isCountCorrect(points))
         {
+            logger.log(Level.WARN,"Points count less than 8: {}",points.length);
             return false;
         }
         setLength(points);
@@ -52,6 +57,7 @@ public class CubeServiceImpl implements CubeService
                 }
             }
         }
+        logger.log(Level.INFO,"All points coordinates give us cube");
         return result;
     }
     public boolean isCube(Cube cube) throws CubeException
@@ -77,7 +83,8 @@ public class CubeServiceImpl implements CubeService
     {
         if(!cubeValidator.isCountCorrect(points))
         {
-            throw new CubeException("Invalid");         //TODO:
+            logger.log(Level.ERROR,"Points number less than 8");
+            throw new CubeException("Invalid points number");
         }
         Point tempPoint = new Point(points[0]);
         float result = 0;
