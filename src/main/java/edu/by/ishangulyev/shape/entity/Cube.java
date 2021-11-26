@@ -7,7 +7,6 @@ import java.util.Arrays;
 public class Cube
 {
     private long id;
-    private float length;
     private Point[] points;
     {
         this.id = IdGenerator.getId();
@@ -21,8 +20,8 @@ public class Cube
     public int hashCode()
     {
         int result = 17;
-        result = 31 * result + Arrays.hashCode(points);
-        result = 31 * result + (int)id;
+        result += 31 * result + Arrays.hashCode(points);
+        result += 31 * result + (int)id;
         return result;
     }
     @Override
@@ -43,8 +42,6 @@ public class Cube
     {final StringBuilder stringBuilder = new StringBuilder()
             .append("Cube{ Points( ")
             .append(points)
-            .append(" length = ")
-            .append(length)
             .append(" }");
         return stringBuilder.toString();
     }
@@ -54,4 +51,8 @@ public class Cube
         return this.id;
     }
 
+    public Point[] getPoints()
+    {
+        return Arrays.copyOf(points,8);
+    }
 }

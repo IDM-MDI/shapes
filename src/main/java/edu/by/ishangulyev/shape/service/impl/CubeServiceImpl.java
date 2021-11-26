@@ -1,5 +1,6 @@
 package edu.by.ishangulyev.shape.service.impl;
 
+import edu.by.ishangulyev.shape.entity.Cube;
 import edu.by.ishangulyev.shape.entity.Point;
 import edu.by.ishangulyev.shape.exception.CubeException;
 import edu.by.ishangulyev.shape.service.CubeService;
@@ -9,53 +10,39 @@ public class CubeServiceImpl implements CubeService
 {
     private float length;
     CubeValidator cubeValidator;
+    PointServiceImpl pointService;
 
     public CubeServiceImpl()
     {
         cubeValidator = new CubeValidator();
+        pointService = new PointServiceImpl();
     }
-//
-//    public float getLength(Point[] points) throws CubeException
-//    {
-//        if(length ==0)
-//        {
-//           length = lengthFinder(points);
-//        }
-//        return length;
-////    }
-//    public float minFinder(Point[] points) throws CubeException
-//    {
-//        if(!CubeValidator.isCountCorrect(points))
-//        {
-//            throw new CubeException("Invalid");         //TODO: Find
-//        }
-//        float min = 0;
-//        float length = lengthCalculator(points);
-//        for (int i = 0; i < points.length; i++)
-//        {
-//            if(Math.abs(points[i].getX()) != length)
-//            {
-//                min = Math.abs(points[i].getX());
-//            }
-//        }
-//        return min;
-//    }
 
-
+    private void setLength(Point[] points) throws CubeException
+    {
+        this.length = lengthCalculator(points);
+    }
     public float getLength()
     {
-        return Float.sum(length,0);
+        return Float.sum(length,0);         //Вернул копию, не судите строго :)
     }
 
     @Override
-    public boolean isCube(Point[] points)
+    public boolean isCube(Point[] points) throws CubeException
     {
+        if(!cubeValidator.isCountCorrect(points))
+        {
+            return false;
+        }
+        setLength(points);
         boolean result = true;
         for (int i = 0; i < points.length; i++)
         {
             for (int j = 0; j < points.length; j++)
             {
                 if(i == j) continue;
+                if(points[i].equals(points[j])) result = false;
+
                 if(isNeighbor(points[i],points[j]))
                 {
                     if(length != lengthHelper(points[i],points[j]))
@@ -67,6 +54,11 @@ public class CubeServiceImpl implements CubeService
         }
         return result;
     }
+    public boolean isCube(Cube cube) throws CubeException
+    {
+        return isCube(cube.getPoints());
+    }
+
 
     @Override
     public float volCalculator()
@@ -83,7 +75,7 @@ public class CubeServiceImpl implements CubeService
     @Override
     public float lengthCalculator(Point[] points) throws CubeException
     {
-        if(!CubeValidator.isCountCorrect(points))
+        if(!cubeValidator.isCountCorrect(points))
         {
             throw new CubeException("Invalid");         //TODO:
         }
@@ -97,12 +89,11 @@ public class CubeServiceImpl implements CubeService
                 break;
             }
         }
-        this.length = result;
         return result;
     }
     private float lengthHelper(Point pointOne, Point pointTwo)
     {
-        Point point = sub(pointOne,pointTwo);
+        Point point = pointService.absSub(pointOne,pointTwo);
         float result = (float) Math.sqrt((Math.pow(point.getX(),2)
                 +(Math.pow(point.getY(),2))
                 +(Math.pow(point.getZ(),2))));
@@ -120,33 +111,5 @@ public class CubeServiceImpl implements CubeService
         }
         return result;
     }
-    private Point sub(Point one, Point two)
-    {
-        float x,y,z;
-        if(Math.abs(one.getX()) >Math.abs(two.getX()))
-        {
-            x = Math.abs(one.getX()) - Math.abs(two.getX());
-        }
-        else
-        {
-            x = Math.abs(two.getX()) - Math.abs(one.getX());
-        }
-        if(Math.abs(one.getY()) >Math.abs(two.getY()))
-        {
-            y = Math.abs(one.getY()) - Math.abs(two.getY());
-        }
-        else
-        {
-            y = Math.abs(two.getY()) - Math.abs(one.getY());
-        }
-        if(Math.abs(one.getZ()) >Math.abs(two.getZ()))
-        {
-            z = Math.abs(one.getZ()) - Math.abs(two.getZ());
-        }
-        else
-        {
-            z = Math.abs(two.getZ()) - Math.abs(one.getZ());
-        }
-        return new Point(x,y,z);
-    }
+
 }

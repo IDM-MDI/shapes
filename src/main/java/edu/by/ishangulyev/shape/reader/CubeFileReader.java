@@ -14,13 +14,11 @@ import java.util.stream.Stream;
 public class CubeFileReader
 {
     private Path path;
-    public CubeFileReader(String fileName)
+    public CubeFileReader() {}
+
+    public List<String> read(String fileName) throws CubeException
     {
         this.path = Paths.get(fileName);
-    }
-
-    public List<String> read() throws CubeException
-    {
         if(CubeLineValidator.isEmpty(path.toString()))
         {
             throw new CubeException("Incorrect path or unreadable file");

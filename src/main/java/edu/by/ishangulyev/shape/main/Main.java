@@ -15,21 +15,22 @@ public class Main
     static final String filename = "src/main/resources/files/properties.txt";
     public static void main(String[] args) throws CubeException
     {
-        CubeFileReader cubeFileReader = new CubeFileReader(filename);
+        CubeFileReader cubeFileReader = new CubeFileReader();
         CubeParser cubeParser = new CubeParser();
-
-        List<String> fileString = cubeFileReader.read();
+        List<Cube> cubes = new ArrayList<>();
+        List<String> fileString = cubeFileReader.read(filename);
         List<Float> fileDouble = cubeParser.parse(fileString.get(0));
-        System.out.println(fileDouble);
-        List<Point> points = new ArrayList<>();
-        int j = 0;
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < fileString.size(); i++)
         {
-            points.add(new Point(fileDouble.get(j++),fileDouble.get(j++),fileDouble.get(j++)));
+            cubes.add(cubeParser.getCubes(cubeParser.parse(fileString.get(i))));
         }
+
+        System.out.println(cubes);
         CubeServiceImpl cubeService = new CubeServiceImpl();
-        System.out.println(cubeService.lengthCalculator(points.toArray(Point[]::new)));
-        System.out.println(cubeService.isCube(points.toArray(Point[]::new)));
+        for (int i = 0; i < cubes.size(); i++)
+        {
+            System.out.println(cubeService.isCube(cubes.get(i)));
+        }
     }
 
 
