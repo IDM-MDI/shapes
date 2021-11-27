@@ -38,7 +38,7 @@ public class CubeFileReader
         catch (IOException e)
         {
             logger.log(Level.ERROR,"Error while reading lines");
-            throw new CubeException("Error while reading lines" + path.toString(),e);
+            throw new CubeException("Error while reading lines" + path.toString());
         }
         logger.log(Level.INFO,"File successfully read");
         return List.copyOf(lines);

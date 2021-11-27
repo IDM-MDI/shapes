@@ -2,6 +2,8 @@ package edu.by.ishangulyev.shape.validator;
 
 import edu.by.ishangulyev.shape.entity.Point;
 
+import java.util.Arrays;
+
 public class CubeValidator
 {
     public CubeValidator(){}
@@ -11,19 +13,18 @@ public class CubeValidator
     }
     public boolean isParamValid(Point[] points)
     {
-        boolean result = true;
-        if(!isCountCorrect(points))
-        {
-            result = false;
-        }
+        return !arePointsNull(points) && isCountCorrect(points);
+    }
+    public boolean arePointsNull(Point[] points)
+    {
+        boolean result = false;
         for (int i = 0; i < points.length; i++)
         {
             if(points[i] == null)
             {
-                result = false;
+                result = true;
             }
         }
         return result;
     }
-
 }
