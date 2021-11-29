@@ -74,4 +74,16 @@ public class CubeWareHouse
             throw new CubeException("No such elements for this key");
         }
     }
+
+    public CubeProperties getCubeProperties(long key) throws CubeException
+    {
+        try
+        {
+            return cubePropertiesMap.get(key).clone();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            throw new CubeException("Cant find properties with this key");
+        }
+    }
 }

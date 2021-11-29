@@ -100,7 +100,22 @@ public class Cube implements CubeObservable
         CubeService cubeService = new CubeServiceImpl();
         this.length = cubeService.lengthCalculator(points);
     }
-
+    public void changePointCoordinate(int key,Point point) throws CubeException         //TODO: Just for test
+    {
+        if(key > POINTS_COUNT || key < 0)
+        {
+            throw new CubeException("Error key number");
+        }
+        points[key] = point;
+    }
+    public void changeLength(float newLength) throws CubeException         //TODO: Just for test
+    {
+        if(newLength < 0)
+        {
+            throw new CubeException("Length less that 0");
+        }
+        this.length = newLength;
+    }
     @Override
     public int hashCode()
     {

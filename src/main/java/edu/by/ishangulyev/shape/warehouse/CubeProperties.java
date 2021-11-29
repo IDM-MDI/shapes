@@ -1,9 +1,7 @@
 package edu.by.ishangulyev.shape.warehouse;
 
 import edu.by.ishangulyev.shape.entity.Point;
-
 import java.util.Arrays;
-import java.util.Objects;
 
 public class CubeProperties implements Cloneable
 {
