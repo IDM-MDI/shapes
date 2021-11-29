@@ -1,7 +1,5 @@
 package edu.by.ishangulyev.shape.entity;
 
-import java.util.Arrays;
-
 public class Point
 {
     private float x = 0,y = 0,z = 0;

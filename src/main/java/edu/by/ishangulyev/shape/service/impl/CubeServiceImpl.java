@@ -69,13 +69,45 @@ public class CubeServiceImpl implements CubeService
     @Override
     public float volCalculator()
     {
-        return (float) Math.pow(length,3);
+        float result = 0;
+        if(length == 0)
+        {
+            logger.log(Level.WARN,"Length equals 0");
+            result = length;
+        }
+        else
+        {
+            result = (float) Math.pow(length,3);
+        }
+        return result;
     }
 
     @Override
     public float areaCalculator()
     {
-        return (float) (6 * Math.pow(length,2));
+        float result = 0;
+        if(length == 0)
+        {
+            logger.log(Level.WARN,"Length equals 0");
+            result = length;
+        }
+        else
+        {
+            result =  (float) (6 * Math.pow(length,2));
+        }
+        return result;
+    }
+
+    @Override
+    public float volCalculator(Point[] points) throws CubeException
+    {
+        return (float) Math.pow(lengthCalculator(points),3);
+    }
+
+    @Override
+    public float areaCalculator(Point[] points) throws CubeException
+    {
+        return (float) (6 * Math.pow(lengthCalculator(points),2));
     }
 
     @Override
